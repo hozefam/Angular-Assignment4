@@ -7,6 +7,9 @@ import {
   HostBinding,
   Output,
   EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
 } from '@angular/core';
 
 @Directive({
@@ -44,6 +47,8 @@ export class PasswordStrengthDirective {
     if (this.mustContainSpecialCharacters) {
       this.passwordRegEx = this.passwordRegEx + '(?=.*[!@#$%^&*])';
     }
+
+    console.log(this.passwordRegEx);
 
     var input: HTMLInputElement = this.el.nativeElement.getElementsByTagName(
       'input'

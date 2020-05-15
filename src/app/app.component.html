@@ -12,57 +12,39 @@
       Custom directive 'appPasswordStrength' to show if the password is strong
       or weak
     </p>
+    <ul>
+      <li>Must contain atleast 1 UPPERCASE character</li>
+      <li>Must contain atleast 1 lowercase character</li>
+      <li>Must contain atleast 1 Number</li>
+      <li>Must contain atleast 1 $P€¢i@£ character</li>
+    </ul>
     <p>Entered Password is</p>
     <h2 class="ui header">{{ enteredPassword }}</h2>
   </div>
 
-  <div class="field">
-    <div class="ui checkbox">
-      <input type="checkbox" [checked]="mustContainLowerCaseLetters" />
-      <label>Must include Lowercase</label>
+  <div class="ui segment">
+    <div
+      class="ui big input fluid"
+      [minLength]="8"
+      [mustContainLowerCaseLetters]="true"
+      [mustContainUpperCaseLetters]="true"
+      [mustContainNumbers]="true"
+      [mustContainSpecialCharacters]="true"
+      appPasswordStrength
+      (Validate)="onValidate($event)"
+    >
+      <input
+        type="text"
+        placeholder="Enter your password"
+        type="text"
+        [(ngModel)]="enteredPassword"
+      />
     </div>
-  </div>
-  <div class="field">
-    <div class="ui checkbox">
-      <input type="checkbox" [checked]="mustContainUpperCaseLetters" />
-      <label>Must include Uppercase </label>
+    <div class="ui red message" *ngIf="!isPasswordValid">
+      The password does not meet the requirements
     </div>
-  </div>
-  <div class="field">
-    <div class="ui checkbox">
-      <input type="checkbox" [checked]="mustContainNumbers" />
-      <label>Must include Numbers</label>
+    <div class="ui green message" *ngIf="isPasswordValid">
+      The password is valid
     </div>
-  </div>
-  <div class="field">
-    <div class="ui checkbox">
-      <input type="checkbox" [checked]="mustContainSpecialCharacters" />
-      <label>Must include Special characters</label>
-    </div>
-  </div>
-  <br />
-  <div
-    class="ui big input fluid"
-    [minLength]="8"
-    [mustContainLowerCaseLetters]="mustContainLowerCaseLetters"
-    [mustContainNumbers]="mustContainNumbers"
-    [mustContainUpperCaseLetters]="mustContainUpperCaseLetters"
-    [mustContainSpecialCharacters]="mustContainSpecialCharacters"
-    appPasswordStrength
-    (Validate)="onValidate($event)"
-  >
-    <input
-      type="text"
-      placeholder="Enter your password"
-      type="password"
-      [(ngModel)]="enteredPassword"
-    />
-  </div>
-
-  <div class="ui red message" *ngIf="!isPasswordValid">
-    The password does not meet the requirements
-  </div>
-  <div class="ui green message" *ngIf="isPasswordValid">
-    The password is valid
   </div>
 </div>

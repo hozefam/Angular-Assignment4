@@ -9,11 +9,6 @@ export class AppComponent {
   enteredPassword: '';
   isPasswordValid: boolean = null;
 
-  mustContainUpperCaseLetters = true;
-  mustContainLowerCaseLetters = true;
-  mustContainNumbers = true;
-  mustContainSpecialCharacters = true;
-
   onValidate(value) {
     this.isPasswordValid = value;
   }
