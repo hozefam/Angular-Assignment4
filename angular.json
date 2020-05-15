@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Assignment4"
+    }
+  },
+  "defaultProject": "Assignment4",
+  "cli": {
+    "analytics": false
+  }
 }
